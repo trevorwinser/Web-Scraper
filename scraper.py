@@ -13,9 +13,9 @@ def scrape_statcan_api():
         soup = BeautifulSoup(response.text, 'html.parser')
 
         # Find the relevant information about how to obtain the API
-        content_div = soup.find('div', class_='view-content')
-        if content_div:
-            api_info = content_div.find_all('p')
+        main = soup.find('main')
+        if main:
+            api_info = main.find_all('p')
             # Extract and print the information
             for paragraph in api_info:
                 print(paragraph.get_text(strip=True))
